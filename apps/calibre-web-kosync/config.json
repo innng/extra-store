@@ -12,7 +12,7 @@
   "exposable": true,
   "port": 8083,
   "tipi_version": 64,
-  "categories": ["media", "books", "sync"],
+  "categories": ["media", "books", "utilities"],
   "requirements": {
     "ports": [8083, 9090]
   },
