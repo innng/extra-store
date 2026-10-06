@@ -1,0 +1,88 @@
+{
+  "$schema": "../app-info-schema.json",
+  "id": "calibre-web-kosync",
+  "name": "Calibre-Web + Kosync",
+  "version": "0.6.27",
+  "description": "Calibre-Web with Kosync for KOReader OPDS sync and metadata sync. Includes universal-calibre for PDF→EPUB conversion and kosync-mod for KOReader sync API.",
+  "short_desc": "E-book server with KOReader sync",
+  "author": "linuxserver.io + kosync",
+  "source": "https://github.com/janeczku/calibre-web",
+  "website": "https://github.com/kosync/kosync",
+  "available": true,
+  "exposable": true,
+  "port": 8083,
+  "tipi_version": 64,
+  "categories": ["media", "books", "sync"],
+  "requirements": {
+    "ports": [8083, 9090]
+  },
+  "form_fields": [
+    {
+      "type": "text",
+      "label": "External Hostname",
+      "description": "Public hostname for Traefik routing (e.g., books.yourdomain.com)",
+      "env_variable": "APP_HOST",
+      "required": true
+    },
+    {
+      "type": "text",
+      "label": "Internal Port",
+      "env_variable": "APP_PORT",
+      "default": "8083",
+      "required": true
+    },
+    {
+      "type": "text",
+      "label": "Docker Mods",
+      "description": "universal-calibre for conversions + kosync-mod for KOReader sync",
+      "env_variable": "DOCKER_MODS",
+      "default": "linuxserver/mods:universal-calibre|ghcr.io/kosync/kosync-mod",
+      "required": true
+    },
+    {
+      "type": "checkbox",
+      "label": "Enable Kosync",
+      "env_variable": "KOSYNC_ENABLED",
+      "default": true,
+      "required": false
+    },
+    {
+      "type": "text",
+      "label": "Kosync Port",
+      "env_variable": "KOSYNC_PORT",
+      "default": "9090",
+      "required": true
+    },
+    {
+      "type": "text",
+      "label": "Kosync Database Path",
+      "env_variable": "KOSYNC_DATABASE",
+      "default": "/config/kosync.db",
+      "required": true
+    },
+    {
+      "type": "number",
+      "label": "User ID (PUID)",
+      "env_variable": "PUID",
+      "default": 1000,
+      "required": true
+    },
+    {
+      "type": "number",
+      "label": "Group ID (PGID)",
+      "env_variable": "PGID",
+      "default": 1000,
+      "required": true
+    },
+    {
+      "type": "text",
+      "label": "Timezone",
+      "env_variable": "TZ",
+      "default": "UTC",
+      "required": true
+    }
+  ],
+  "supported_architectures": ["amd64", "arm64"],
+  "dynamic_config": true,
+  "min_tipi_version": "4.7.0"
+}

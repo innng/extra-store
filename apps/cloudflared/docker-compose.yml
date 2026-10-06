@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate run --token ${TUNNEL_TOKEN}
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ${APP_DATA_DIR}/cloudflared:/etc/cloudflared
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
