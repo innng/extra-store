@@ -1,4 +1,4 @@
-# ing-store - Custom Runtipi App Store
+# extra-store - Custom Runtipi App Store
 
 Custom applications for my home server setup.
 
@@ -17,12 +17,12 @@ Calibre-Web with Kosync for KOReader OPDS + metadata sync.
 
 ## Adding to Runtipi
 
-1. Push this repo to GitHub (e.g., `github.com/ing/runtipi-store`)
+1. Push this repo to GitHub (e.g., `github.com/ing/extra-store`)
 2. In Runtipi: **Settings → App Stores → Add Store**
-   - Name: `ing-store`
-   - URL: `https://github.com/ing/runtipi-store`
+   - Name: `extra-store`
+   - URL: `https://github.com/ing/extra-store`
    - Branch: `main`
-3. **Apps → Browse → ing-store** → Install apps
+3. **Apps → Browse → extra-store** → Install apps
 
 ## Configuration
 
@@ -54,7 +54,7 @@ Calibre-Web with Kosync for KOReader OPDS + metadata sync.
 Runtipi manages Traefik labels via `APP_HOST`/`APP_PORT`. For custom routing (e.g., `/opds` only), add user-config override:
 
 ```yaml
-# ~/workspace/server/runtipi/user-config/ing-store/calibre-web-kosync/docker-compose.yml
+# ~/workspace/server/runtipi/user-config/extra-store/calibre-web-kosync/docker-compose.yml
 services:
   calibre-web-kosync:
     labels:

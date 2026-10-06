@@ -1,5 +1,5 @@
 {
-  "name": "ing-store",
+  "name": "extra-store",
   "version": "1",
   "apps": {
     "cloudflared": "apps/cloudflared/app.json",
