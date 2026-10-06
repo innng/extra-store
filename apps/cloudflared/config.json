@@ -12,7 +12,7 @@
   "exposable": false,
   "port": 0,
   "tipi_version": 64,
-  "categories": ["network", "security", "proxy"],
+  "categories": ["network", "security"],
   "requirements": {
     "ports": []
   },
