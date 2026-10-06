@@ -22,7 +22,9 @@
       "label": "Tunnel Token",
       "description": "Get from Cloudflare Zero Trust → Tunnels → your tunnel → Token",
       "env_variable": "TUNNEL_TOKEN",
-      "required": true
+      "required": true,
+      "min": 10,
+      "max": 500
     }
   ],
   "supported_architectures": ["amd64", "arm64"],
