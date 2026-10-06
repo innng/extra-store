@@ -15,4 +15,4 @@ services:
       is_main: true
       add_to_main_network: false
 x-runtipi:
-  schema_version: "2"
+  schema_version: 2
