@@ -21,3 +21,8 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
+    x-runtipi:
+      internal_port: 8083
+      is_main: true
+x-runtipi:
+  schema_version: 2
