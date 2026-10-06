@@ -9,7 +9,8 @@
   "volumes": [
     {
       "container": "/etc/cloudflared",
-      "bind": "/home/ing/workspace/server/runtipi/app-data/cloudflared"
+      "bind": "${APP_DATA_DIR}/cloudflared",
+      "description": "Cloudflared config and certificates"
     }
   ],
   "environment": [
