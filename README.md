@@ -1,6 +1,6 @@
 # extra-store - Custom Runtipi App Store
 
-Custom applications for my home server setup.
+Custom applications for home server setups.
 
 ## Apps
 
@@ -17,10 +17,10 @@ Calibre-Web with Kosync for KOReader OPDS + metadata sync.
 
 ## Adding to Runtipi
 
-1. Push this repo to GitHub (e.g., `github.com/ing/extra-store`)
+1. Push this repo to GitHub (e.g., `github.com/youruser/extra-store`)
 2. In Runtipi: **Settings → App Stores → Add Store**
    - Name: `extra-store`
-   - URL: `https://github.com/ing/extra-store`
+   - URL: `https://github.com/youruser/extra-store`
    - Branch: `main`
 3. **Apps → Browse → extra-store** → Install apps
 
@@ -32,16 +32,16 @@ Calibre-Web with Kosync for KOReader OPDS + metadata sync.
 3. Tunnel will connect and route hostnames per Cloudflare dashboard
 
 ### calibre-web-kosync
-1. Set `APP_HOST` to your public hostname (e.g., `books.innng.dev`)
-2. Point Cloudflare Tunnel hostname to Traefik (`http://100.114.184.28:80`)
+1. Set `APP_HOST` to your public hostname (e.g., `books.yourdomain.com`)
+2. Point Cloudflare Tunnel hostname to Traefik (`http://your-tailscale-ip:80`)
 3. Traefik routes to this app via Host header
-4. KOReader OPDS: `https://books.innng.dev/opds/`
-5. KOReader Kosync: `https://books.innng.dev:9090` (if exposed) or via Tailscale
+4. KOReader OPDS: `https://books.yourdomain.com/opds/`
+5. KOReader Kosync: `https://books.yourdomain.com:9090` (if exposed) or via Tailscale
 
 ## Volumes (persisted outside install dir)
 
 ```
-/home/ing/workspace/server/runtipi/app-data/
+/path/to/runtipi/app-data/
 ├── cloudflared/
 ├── calibre-web-kosync/
 │   ├── books/           # Calibre library
@@ -54,11 +54,11 @@ Calibre-Web with Kosync for KOReader OPDS + metadata sync.
 Runtipi manages Traefik labels via `APP_HOST`/`APP_PORT`. For custom routing (e.g., `/opds` only), add user-config override:
 
 ```yaml
-# ~/workspace/server/runtipi/user-config/extra-store/calibre-web-kosync/docker-compose.yml
+# ~/path/to/runtipi/user-config/extra-store/calibre-web-kosync/docker-compose.yml
 services:
   calibre-web-kosync:
     labels:
-      traefik.http.routers.calibre-opds.rule: Host(`books.innng.dev`) && PathPrefix(`/opds`)
+      traefik.http.routers.calibre-opds.rule: Host(`books.yourdomain.com`) && PathPrefix(`/opds`)
       traefik.http.routers.calibre-opds.entrypoints: web
       traefik.http.routers.calibre-opds.service: calibre-web-kosync
       traefik.http.routers.calibre-opds.priority: 200
@@ -67,10 +67,10 @@ services:
 ## KOReader Setup
 
 ### OPDS Catalog
-- URL: `https://books.innng.dev/opds/`
+- URL: `https://books.yourdomain.com/opds/`
 - No auth (uses calibre-web anonymous access)
 
 ### Kosync (metadata sync)
-- URL: `https://books.innng.dev:9090` (if exposed via tunnel)
-- Or via Tailscale: `http://100.114.184.28:9090`
+- URL: `https://books.yourdomain.com:9090` (if exposed via tunnel)
+- Or via Tailscale: `http://your-tailscale-ip:9090`
 - Requires calibre-web-kosync with kosync-mod enabled
