@@ -43,3 +43,5 @@ Calibre-Web is a web interface for browsing, reading, and downloading e-books fr
 - First run: Calibre-Web will prompt for library location
 - Kosync mod enables `/kosync` API endpoints
 - Anonymous OPDS: Set `config_anonbrowse=1` in Calibre-Web admin
+- **Conversion**: Place PDFs in library, use Calibre-Web UI → Convert → EPUB
+- **Page count**: Stored in metadata if available; KOReader reads from OPF/EPUB metadata

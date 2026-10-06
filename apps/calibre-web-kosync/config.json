@@ -26,59 +26,10 @@
     },
     {
       "type": "text",
-      "label": "Internal Port",
-      "env_variable": "APP_PORT",
-      "default": "8083",
-      "required": true
-    },
-    {
-      "type": "text",
       "label": "Docker Mods",
       "description": "universal-calibre for conversions + kosync-mod for KOReader sync",
       "env_variable": "DOCKER_MODS",
       "default": "linuxserver/mods:universal-calibre|ghcr.io/kosync/kosync-mod",
-      "required": true
-    },
-    {
-      "type": "boolean",
-      "label": "Enable Kosync",
-      "env_variable": "KOSYNC_ENABLED",
-      "default": true,
-      "required": false
-    },
-    {
-      "type": "text",
-      "label": "Kosync Port",
-      "env_variable": "KOSYNC_PORT",
-      "default": "9090",
-      "required": true
-    },
-    {
-      "type": "text",
-      "label": "Kosync Database Path",
-      "env_variable": "KOSYNC_DATABASE",
-      "default": "/config/kosync.db",
-      "required": true
-    },
-    {
-      "type": "number",
-      "label": "User ID (PUID)",
-      "env_variable": "PUID",
-      "default": 1000,
-      "required": true
-    },
-    {
-      "type": "number",
-      "label": "Group ID (PGID)",
-      "env_variable": "PGID",
-      "default": 1000,
-      "required": true
-    },
-    {
-      "type": "text",
-      "label": "Timezone",
-      "env_variable": "TZ",
-      "default": "UTC",
       "required": true
     }
   ],
