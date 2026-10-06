@@ -1,0 +1,8 @@
+{
+  "name": "ing-store",
+  "version": "1",
+  "apps": {
+    "cloudflared": "apps/cloudflared/app.json",
+    "calibre-web-kosync": "apps/calibre-web-kosync/app.json"
+  }
+}
