@@ -20,17 +20,17 @@
   "volumes": [
     {
       "container": "/books",
-      "bind": "/home/ing/workspace/server/runtipi/app-data/calibre-web-kosync/books",
+      "bind": "${APP_DATA_DIR}/calibre-web-kosync/books",
       "description": "Calibre library (books + metadata.db)"
     },
     {
       "container": "/config",
-      "bind": "/home/ing/workspace/server/runtipi/app-data/calibre-web-kosync/config",
+      "bind": "${APP_DATA_DIR}/calibre-web-kosync/config",
       "description": "Calibre-Web config (app.db, settings)"
     },
     {
       "container": "/app/calibre",
-      "bind": "/home/ing/workspace/server/runtipi/app-data/calibre-web-kosync/calibre-binaries",
+      "bind": "${APP_DATA_DIR}/calibre-web-kosync/calibre-binaries",
       "description": "Persistent calibre binaries (ebook-convert, etc.)"
     }
   ],
@@ -38,8 +38,8 @@
     {
       "name": "APP_HOST",
       "label": "External Hostname",
-      "description": "Public hostname for Traefik routing (e.g., books.innng.dev)",
-      "value": "books.innng.dev"
+      "description": "Public hostname for Traefik routing (e.g., books.yourdomain.com)",
+      "value": ""
     },
     {
       "name": "APP_PORT",
