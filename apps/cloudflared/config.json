@@ -10,7 +10,7 @@
   "website": "https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/",
   "available": true,
   "exposable": false,
-  "port": 0,
+  "port": 8080,
   "tipi_version": 64,
   "categories": ["network", "security"],
   "requirements": {
