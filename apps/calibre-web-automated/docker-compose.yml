@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  calibre-web-automated:
+    image: ghcr.io/linuxserver/calibre-web:latest
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT}:8083"
+    volumes:
+      - ${APP_DATA_DIR}/calibre-web-automated/books:/books
+      - ${APP_DATA_DIR}/calibre-web-automated/config:/config
+      - ${APP_DATA_DIR}/calibre-web-automated/calibre-binaries:/app/calibre
+    environment:
+      - APP_HOST=${APP_HOST}
+      - APP_PORT=${APP_PORT}
+      - DOCKER_MODS=${DOCKER_MODS}
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+    x-runtipi:
+      internal_port: 8083
+      is_main: true
+x-runtipi:
+  schema_version: 2

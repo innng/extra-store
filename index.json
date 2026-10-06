@@ -1,12 +1,9 @@
 {
-  "apps": [
-    {
-      "id": "cloudflared",
-      "path": "apps/cloudflared"
-    },
-    {
-      "id": "calibre-web-kosync",
-      "path": "apps/calibre-web-kosync"
-    }
-  ]
+  "name": "extra-store",
+  "version": "1",
+  "apps": {
+    "cloudflared": "apps/cloudflared/config.json",
+    "calibre-web-kosync": "apps/calibre-web-kosync/config.json",
+    "calibre-web-automated": "apps/calibre-web-automated/config.json"
+  }
 }
