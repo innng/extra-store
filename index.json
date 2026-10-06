@@ -2,7 +2,7 @@
   "name": "extra-store",
   "version": "1",
   "apps": {
-    "cloudflared": "apps/cloudflared/app.json",
-    "calibre-web-kosync": "apps/calibre-web-kosync/app.json"
+    "cloudflared": "apps/cloudflared/config.json",
+    "calibre-web-kosync": "apps/calibre-web-kosync/config.json"
   }
 }
