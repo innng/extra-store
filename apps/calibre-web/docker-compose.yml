@@ -2,19 +2,17 @@ version: "3.8"
 
 services:
   calibre-web:
-    image: ghcr.io/linuxserver/calibre-web:latest
+    image: lscr.io/linuxserver/calibre-web:0.6.27
     restart: unless-stopped
     ports:
-      - "${APP_PORT}:8083"
-      - "9090:9090"
+      - 8100:8083
+      - 9090:9090
     volumes:
       - ${APP_DATA_DIR}/calibre-web/books:/books
       - ${APP_DATA_DIR}/calibre-web/config:/config
       - ${APP_DATA_DIR}/calibre-web/calibre-binaries:/app/calibre
     environment:
-      - APP_HOST=${APP_HOST}
-      - APP_PORT=${APP_PORT}
-      - DOCKER_MODS=${DOCKER_MODS}
+      - DOCKER_MODS=linuxserver/mods:universal-calibre|ghcr.io/kosync/kosync-mod
       - KOSYNC_ENABLED=true
       - KOSYNC_PORT=9090
       - KOSYNC_DATABASE=/config/kosync.db
