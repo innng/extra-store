@@ -1,12 +1,13 @@
 # Calibre-Web Automated
 
-Calibre-Web with **universal-calibre** mod for automatic PDF→EPUB conversion.
+Calibre-Web Automated includes Calibre book management, conversion, and KOReader Kosync.
 
 ## Features
 
 - **Web UI**: Browse, search, and download e-books
 - **OPDS Support**: Native OPDS catalog for e-readers (KOReader, Kobo, etc.)
-- **PDF → EPUB Conversion**: Automatic via universal-calibre mod
+- **PDF → EPUB Conversion**: Built in
+- **KOReader Kosync**: Built in at `/kosync`
 - **Multi-user**: User management with roles and permissions
 - **Anonymous OPDS**: Configurable public access without authentication
 
@@ -15,23 +16,22 @@ Calibre-Web with **universal-calibre** mod for automatic PDF→EPUB conversion.
 1. Set **External Hostname** (e.g., `books.yourdomain.com`)
 2. Point Cloudflare Tunnel to Traefik (`http://your-tailscale-ip:80`)
 3. Traefik routes via Host header to this app
-4. Configure Calibre library path: `/books`
+4. CWA automatically creates and manages the Calibre library at `/calibre-library`.
 
 ## Volumes
 
 | Volume | Purpose |
 |--------|---------|
-| `/books` | Calibre library (metadata.db + book files) |
-| `/config` | Calibre-Web config (app.db, settings) |
-| `/app/calibre` | Persistent calibre binaries (ebook-convert) |
+| `/config` | CWA configuration and application data |
+| `/cwa-book-ingest` | Drop files here for automatic import; processed files are removed |
+| `/calibre-library` | Managed Calibre library (metadata.db + book files) |
 
 ## KOReader Setup
 
 - **OPDS Catalog**: `https://yourdomain.com/opds/`
-- No auth needed (configure `config_anonbrowse=1` in Calibre-Web admin)
+- **Kosync**: `https://yourdomain.com/kosync`
 
 ## Notes
 
-- Requires Calibre library with `metadata.db` in `/books`
-- First run: Calibre-Web will prompt for library location
-- Conversion: Place PDFs in library, use Calibre-Web UI → Convert → EPUB
+- On first run CWA creates a library if none exists.
+- Put files in the ingest directory; CWA imports and catalogs them automatically.
