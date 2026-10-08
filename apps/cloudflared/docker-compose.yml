@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate run --token ${TUNNEL_TOKEN}
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ${APP_DATA_DIR}/cloudflared:/etc/cloudflared
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    x-runtipi:
+      internal_port: 8080
+      is_main: true
+      add_to_main_network: false
+x-runtipi:
+  schema_version: 2

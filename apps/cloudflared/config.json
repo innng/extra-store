@@ -1,0 +1,33 @@
+{
+  "$schema": "../app-info-schema.json",
+  "id": "cloudflared",
+  "name": "Cloudflare Tunnel",
+  "version": "2024.12.0",
+  "description": "Cloudflare Tunnel (cloudflared) for secure ingress without opening ports. Exposes local services securely via Cloudflare's global network.",
+  "short_desc": "Secure tunnels to Cloudflare edge",
+  "author": "Cloudflare",
+  "source": "https://github.com/cloudflare/cloudflared",
+  "website": "https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/",
+  "available": true,
+  "exposable": false,
+  "port": 8080,
+  "tipi_version": 64,
+  "categories": ["network", "security"],
+  "requirements": {
+    "ports": []
+  },
+  "form_fields": [
+    {
+      "type": "password",
+      "label": "Tunnel Token",
+      "description": "Get from Cloudflare Zero Trust → Tunnels → your tunnel → Token",
+      "env_variable": "TUNNEL_TOKEN",
+      "required": true,
+      "min": 10,
+      "max": 500
+    }
+  ],
+  "supported_architectures": ["amd64", "arm64"],
+  "dynamic_config": true,
+  "min_tipi_version": "4.7.0"
+}
