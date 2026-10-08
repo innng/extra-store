@@ -1,0 +1,19 @@
+{
+  "$schema": "../app-info-schema.json",
+  "name": "Calibre-Web",
+  "available": true,
+  "exposable": true,
+  "dynamic_config": true,
+  "port": 8100,
+  "tipi_version": 19,
+  "version": "0.6.27",
+  "id": "calibre-web",
+  "categories": ["books"],
+  "description": "Calibre-Web with PDF/EPUB conversion and KOReader Kosync. On initial setup, enter /calibre as the Calibre library location, enable Separate Book Files from Library, then enter /books.",
+  "short_desc": "Browse books with Calibre-Web, conversion support, and KOReader Kosync.",
+  "author": "https://github.com/janeczku/",
+  "source": "https://github.com/janeczku/calibre-web",
+  "form_fields": [],
+  "supported_architectures": ["arm64", "amd64"],
+  "min_tipi_version": "4.5.0"
+}

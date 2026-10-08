@@ -3,6 +3,6 @@
   "version": "1",
   "apps": {
     "cloudflared": "apps/cloudflared/app.json",
-    "calibre-web-kosync": "apps/calibre-web-kosync/app.json"
+    "calibre-web": "apps/calibre-web/config.json"
   }
 }

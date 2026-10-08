@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  calibre-web:
+    image: lscr.io/linuxserver/calibre-web:0.6.27
+    restart: unless-stopped
+    ports:
+      - ${APP_PORT}:8083
+    volumes:
+      - ${APP_DATA_DIR}/data/config:/config
+      - ${APP_DATA_DIR}/data/calibre:/calibre
+      - ${APP_DATA_DIR}/data/books:/books
+      - calibre-binaries:/app/calibre
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+      - DOCKER_MODS=linuxserver/mods:universal-calibre
+    networks:
+      - tipi_main_network
+    labels:
+      traefik.enable: true
+      traefik.http.middlewares.calibre-web-web-redirect.redirectscheme.scheme: https
+      traefik.http.services.calibre-web.loadbalancer.server.port: 8083
+      traefik.http.routers.calibre-web-insecure.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.calibre-web-insecure.entrypoints: web
+      traefik.http.routers.calibre-web-insecure.service: calibre-web
+      traefik.http.routers.calibre-web-insecure.middlewares: calibre-web-web-redirect
+      traefik.http.routers.calibre-web.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.calibre-web.entrypoints: websecure
+      traefik.http.routers.calibre-web.service: calibre-web
+      traefik.http.routers.calibre-web.tls.certresolver: myresolver
+
+volumes:
+  calibre-binaries:
+
+networks:
+  tipi_main_network:
+    external: true
