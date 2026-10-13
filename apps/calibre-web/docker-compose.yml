@@ -2,14 +2,15 @@ version: "3.8"
 
 services:
   calibre-web:
-    image: crocodilestick/calibre-web-automated:latest
+    image: crocodilestick/calibre-web-automated:v4.0.8
     restart: unless-stopped
     ports:
       - ${APP_PORT}:8083
     volumes:
-      - ${APP_DATA_DIR}/data/cwa-config:/config
+      - ${APP_DATA_DIR}/data/config:/config
       - ${APP_DATA_DIR}/data/ingest:/cwa-book-ingest
-      - ${APP_DATA_DIR}/data/library:/calibre-library
+      - ${ROOT_FOLDER_HOST}/media/data/calibre:/calibre-library
+      - ${ROOT_FOLDER_HOST}/media/data/books:/books
     environment:
       - PUID=1000
       - PGID=1000
@@ -32,6 +33,7 @@ services:
       traefik.http.routers.calibre-web.entrypoints: websecure
       traefik.http.routers.calibre-web.service: calibre-web
       traefik.http.routers.calibre-web.tls.certresolver: myresolver
+      runtipi.managed: true
 
 networks:
   tipi_main_network:
