@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Stremio Server">
+  <rect width="128" height="128" rx="28" fill="#6c3fd1"/>
+  <path d="M49 38v52l42-26z" fill="#fff"/>
+  <circle cx="96" cy="94" r="13" fill="#2dd4bf"/>
+  <path d="M90 94h12M96 88v12" stroke="#172554" stroke-width="4" stroke-linecap="round"/>
+</svg>
