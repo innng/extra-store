@@ -7,7 +7,7 @@
   "exposable": true,
   "dynamic_config": true,
   "port": 11470,
-  "tipi_version": 1,
+  "tipi_version": 2,
   "categories": ["media"],
   "description": "Stremio's streaming server for Web Stremio. It handles stream delivery and torrent downloads; browser playback still depends on the source codecs.",
   "short_desc": "Streaming server for Web Stremio.",

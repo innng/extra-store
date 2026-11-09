@@ -16,6 +16,9 @@ services:
     labels:
       traefik.enable: true
       traefik.http.middlewares.stremio-server-web-redirect.redirectscheme.scheme: https
+      traefik.http.middlewares.stremio-server-web-ui.redirectregex.regex: ^https://stremio\.innng\.dev/$
+      traefik.http.middlewares.stremio-server-web-ui.redirectregex.replacement: https://app.strem.io/shell-v4.4/?streamingServer=https%3A%2F%2Fstremio.innng.dev
+      traefik.http.middlewares.stremio-server-web-ui.redirectregex.permanent: false
       traefik.http.services.stremio-server.loadbalancer.server.port: 11470
       traefik.http.routers.stremio-server-insecure.rule: Host(`${APP_DOMAIN}`)
       traefik.http.routers.stremio-server-insecure.entrypoints: web
@@ -24,6 +27,7 @@ services:
       traefik.http.routers.stremio-server.rule: Host(`${APP_DOMAIN}`)
       traefik.http.routers.stremio-server.entrypoints: websecure
       traefik.http.routers.stremio-server.service: stremio-server
+      traefik.http.routers.stremio-server.middlewares: stremio-server-web-ui
       traefik.http.routers.stremio-server.tls.certresolver: myresolver
       runtipi.managed: true
 
