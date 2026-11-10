@@ -19,15 +19,19 @@ services:
       traefik.http.middlewares.stremio-server-web-ui.redirectregex.regex: ^https://stremio\.innng\.dev/$
       traefik.http.middlewares.stremio-server-web-ui.redirectregex.replacement: https://app.strem.io/shell-v4.4/?streamingServer=https%3A%2F%2Fstremio.innng.dev
       traefik.http.middlewares.stremio-server-web-ui.redirectregex.permanent: false
+      # Chrome "Local Network Access": the shell (public origin) reaches this server via
+      # a private IP (Tailscale CGNAT 100.64/10). Responses+preflights must declare
+      # Access-Control-Allow-Private-Network: true or Chrome blocks them (NetworkError).
+      traefik.http.middlewares.stremio-server-pna.headers.customresponseheaders.Access-Control-Allow-Private-Network: "true"
       traefik.http.services.stremio-server.loadbalancer.server.port: 11470
       traefik.http.routers.stremio-server-insecure.rule: Host(`${APP_DOMAIN}`)
       traefik.http.routers.stremio-server-insecure.entrypoints: web
       traefik.http.routers.stremio-server-insecure.service: stremio-server
-      traefik.http.routers.stremio-server-insecure.middlewares: stremio-server-web-redirect
+      traefik.http.routers.stremio-server-insecure.middlewares: stremio-server-web-redirect,stremio-server-pna
       traefik.http.routers.stremio-server.rule: Host(`${APP_DOMAIN}`)
       traefik.http.routers.stremio-server.entrypoints: websecure
       traefik.http.routers.stremio-server.service: stremio-server
-      traefik.http.routers.stremio-server.middlewares: stremio-server-web-ui
+      traefik.http.routers.stremio-server.middlewares: stremio-server-web-ui,stremio-server-pna
       traefik.http.routers.stremio-server.tls.certresolver: myresolver
       runtipi.managed: true
 

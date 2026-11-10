@@ -7,15 +7,20 @@
   "exposable": true,
   "dynamic_config": true,
   "port": 11470,
-  "tipi_version": 2,
-  "categories": ["media"],
+  "tipi_version": 3,
+  "categories": [
+    "media"
+  ],
   "description": "Stremio's streaming server for Web Stremio. It handles stream delivery and torrent downloads; browser playback still depends on the source codecs.",
   "short_desc": "Streaming server for Web Stremio.",
   "author": "https://www.stremio.com/",
   "source": "https://hub.docker.com/r/stremio/server",
   "website": "https://www.stremio.com/",
   "form_fields": [],
-  "supported_architectures": ["amd64", "arm64"],
+  "supported_architectures": [
+    "amd64",
+    "arm64"
+  ],
   "created_at": 1794182400000,
   "updated_at": 1794182400000,
   "min_tipi_version": "4.5.0"
