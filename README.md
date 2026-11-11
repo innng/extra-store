@@ -68,7 +68,8 @@ Then **Apps → Browse → extra-store** and install what you need.
 - Logos must be `metadata/logo.jpg` — Runtipi v4 hardcodes that filename and
   ignores SVG.
 - App data lives under Runtipi's `app-data/<store>/<app>/` and survives
-  uninstall/reinstall.
+  restarts and app updates — but **not uninstall** (uninstalling deletes the
+  app's data directory; back up first).
 
 ## License
 

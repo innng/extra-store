@@ -13,14 +13,11 @@
   "port": 8080,
   "tipi_version": 65,
   "categories": ["network", "security"],
-  "requirements": {
-    "ports": []
-  },
   "form_fields": [
     {
       "type": "password",
       "label": "Tunnel Token",
-      "description": "Get from Cloudflare Zero Trust → Tunnels → your tunnel → Token",
+      "hint": "Get from Cloudflare Zero Trust → Tunnels → your tunnel → Token",
       "env_variable": "TUNNEL_TOKEN",
       "required": true,
       "min": 10,
