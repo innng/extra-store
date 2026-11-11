@@ -2,7 +2,7 @@
   "$schema": "../app-info-schema.json",
   "id": "cloudflared",
   "name": "Cloudflare Tunnel",
-  "version": "2024.12.0",
+  "version": "2026.10.7",
   "description": "Cloudflare Tunnel (cloudflared) for secure ingress without opening ports. Exposes local services securely via Cloudflare's global network.",
   "short_desc": "Secure tunnels to Cloudflare edge",
   "author": "Cloudflare",
@@ -11,7 +11,7 @@
   "available": true,
   "exposable": false,
   "port": 8080,
-  "tipi_version": 64,
+  "tipi_version": 65,
   "categories": ["network", "security"],
   "requirements": {
     "ports": []
