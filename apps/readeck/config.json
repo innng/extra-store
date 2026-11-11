@@ -1,0 +1,20 @@
+{
+  "$schema": "../app-info-schema.json",
+  "name": "Readeck",
+  "available": true,
+  "exposable": true,
+  "port": 8000,
+  "tipi_version": 2,
+  "version": "0.23.5",
+  "id": "readeck",
+  "categories": ["utilities"],
+  "description": "Private bookmark manager and read-later service that archives article content locally.",
+  "short_desc": "Private bookmark manager and read-later service.",
+  "author": "https://readeck.org/",
+  "source": "https://codeberg.org/readeck/readeck",
+  "form_fields": [],
+  "supported_architectures": ["arm64", "amd64"],
+  "created_at": 1792464672000,
+  "updated_at": 1792742919000,
+  "min_tipi_version": "4.5.0"
+}
