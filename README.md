@@ -1,61 +1,75 @@
-# extra-store - Custom Runtipi App Store
+# extra-store
 
-Custom applications for home server setups.
+A custom [Runtipi](https://runtipi.io) app store with apps that aren't in the
+official catalogue, configured the way this server uses them.
+
+Runtipi v4 scans each `apps/<id>/` directory directly (a root index is not
+used). Every app ships a `config.json` validated against
+`apps/app-info-schema.json`, a `docker-compose.yml`, and app metadata under
+`metadata/` (a square `logo.jpg` plus a `description.md`).
 
 ## Apps
 
-### cloudflared
-Cloudflare Tunnel for secure ingress without opening ports.
-- Uses host networking to reach Traefik on localhost
-- Configured via `TUNNEL_TOKEN` from Cloudflare Zero Trust
+| App | What it is | Notes |
+|-----|------------|-------|
+| [`calibre-web`](apps/calibre-web) | Calibre-Web Automated (pinned `v4.0.8`) with built-in KOReader Kosync | Official-style split library layout; universal-calibre conversion |
+| [`cloudflared`](apps/cloudflared) | Cloudflare Tunnel for ingress without open ports | Host networking; reaches Traefik on localhost |
+| [`readeck`](apps/readeck) | Private bookmark manager and read-later service | Image pinned to a Readeck release |
+| [`stremio-server`](apps/stremio-server) | Stremio streaming server for Web Stremio | Root redirects to the Web Stremio shell pointed back at this server |
+
+## Installing this store
+
+In Runtipi: **Settings → App Stores → Add Store**
+
+- **Name:** `extra-store`
+- **URL:** `https://github.com/innng/extra-store`
+- **Branch:** `main`
+
+Then **Apps → Browse → extra-store** and install what you need.
+
+## App setup
 
 ### calibre-web
-The official Calibre-Web layout with conversion and Kosync mods added.
-- Includes universal-calibre mod for PDF→EPUB conversion
-- Includes kosync-mod for KOReader sync API on port 9090
-- Persistent calibre binaries volume
 
-## Adding to Runtipi
-
-1. Push this repo to GitHub (e.g., `github.com/youruser/extra-store`)
-2. In Runtipi: **Settings → App Stores → Add Store**
-   - Name: `extra-store`
-   - URL: `https://github.com/youruser/extra-store`
-   - Branch: `main`
-3. **Apps → Browse → extra-store** → Install apps
-
-## Configuration
+1. Expose the app and point its hostname at your domain.
+2. Library uses Calibre-Web's separate-book-files mode:
+   - `${ROOT_FOLDER_HOST}/media/data/calibre` → `/calibre-library` (metadata.db)
+   - `${ROOT_FOLDER_HOST}/media/data/books` → `/books` (book files)
+   - `${APP_DATA_DIR}/data/config` → `/config` (app data)
+   - `${APP_DATA_DIR}/data/ingest` → `/cwa-book-ingest` (drop folder for auto-import)
+3. KOReader OPDS: `https://<your-domain>/opds/`
+4. KOReader Kosync: `https://<your-domain>/kosync` (GET/PUT API built into CWA)
 
 ### cloudflared
-1. Get tunnel token: Cloudflare Zero Trust → Tunnels → your tunnel → "Token"
-2. Enter token in app config
-3. Tunnel will connect and route hostnames per Cloudflare dashboard
 
-### calibre-web
-1. Configure the app hostname as `books.yourdomain.com`.
-2. Create a second tunnel hostname, such as `sync.yourdomain.com`, pointing to Traefik on port 80.
-3. KOReader OPDS: `https://books.yourdomain.com/opds/`
-4. KOReader Kosync: `https://sync.yourdomain.com/`
+1. Create a tunnel in Cloudflare Zero Trust and copy its token.
+2. Enter the token in the app's form field (`TUNNEL_TOKEN`, stored as a secret).
+3. Route hostnames in the Cloudflare dashboard; the container runs with host
+   networking so it reaches Traefik on localhost.
 
-## Volumes (persisted outside install dir)
+### readeck
 
-```
-/path/to/runtipi/app-data/
-├── cloudflared/
-├── media/data/calibre/  # Calibre database (metadata.db)
-├── media/data/books/    # separate ebook files
-```
+1. Expose the app and point its hostname at your domain.
+2. Data persists under `${APP_DATA_DIR}/data`.
 
-## Traefik Labels (auto-added by Runtipi)
+### stremio-server
 
-Calibre-Web and Kosync use separate hostnames; neither needs a path-specific override or a published Kosync port.
+1. Expose the app and point its hostname at your domain.
+2. Visiting the root serves a redirect to the official Web Stremio shell
+   (`app.strem.io`) with `streamingServer` set to this instance.
+3. A response header middleware sends
+   `Access-Control-Allow-Private-Network: true` so browsers reaching the
+   server over a private network (e.g. a tailnet) can play from it.
 
-## KOReader Setup
+## Notes
 
-### OPDS Catalog
-- URL: `https://books.yourdomain.com/opds/`
-- No auth (uses calibre-web anonymous access)
+- Runtipi injects its own Traefik routers for exposed apps, so apps that ship
+  their own router labels end up with both (harmless duplicates).
+- Logos must be `metadata/logo.jpg` — Runtipi v4 hardcodes that filename and
+  ignores SVG.
+- App data lives under Runtipi's `app-data/<store>/<app>/` and survives
+  uninstall/reinstall.
 
-### Kosync (metadata sync)
-- URL: `https://sync.yourdomain.com/`
-- Requires calibre-web-kosync with kosync-mod enabled
+## License
+
+[MIT](LICENSE)

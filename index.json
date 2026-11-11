@@ -1,8 +1,0 @@
-{
-  "name": "extra-store",
-  "version": "1",
-  "apps": {
-    "cloudflared": "apps/cloudflared/config.json",
-    "calibre-web": "apps/calibre-web/config.json"
-  }
-}
